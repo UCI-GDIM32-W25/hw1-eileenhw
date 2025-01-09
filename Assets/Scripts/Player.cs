@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     private void Start ()
     {
-        _numSeedsLeft = 5;
+        _numSeedsLeft = _numSeeds;
         _numSeedsPlanted = 0;
     }
 
@@ -46,10 +46,15 @@ public class Player : MonoBehaviour
        if(_numSeedsLeft > 0)
        {
             //make prefab appear
+            //Vector3 playerPosition = new Vector3(_playerTransform.position.x, _playerTransform.position.y, 0);
+            Vector3 playerPosition =  _playerTransform.position;
+            Instantiate(_plantPrefab,playerPosition,Quaternion.identity);
+            
+            
             _numSeedsLeft--;
             _numSeedsPlanted++;
             //updateUI 
-            _plantCountUI.UpdateSeeds(_numSeedsLeft,_numSeedsPlanted);
+            _plantCountUI.UpdateSeeds(_numSeedsLeft, _numSeedsPlanted);
        }
 
     }
